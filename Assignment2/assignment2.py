@@ -31,7 +31,7 @@ def hotDogCounter():
     if weiners[1] > 0:
         weinerPacks = weiners[0] + 1
         print(f"Total hotdog packs needed: {weinerPacks}")
-        print(f"Remaining buns: {10 - weiners[1]}")
+        print(f"Remaining weiners: {10 - weiners[1]}")
     else:
         print(f"Total hotdog packs needed: {weiners[0]}")
         print(f"No remaining weiners.")

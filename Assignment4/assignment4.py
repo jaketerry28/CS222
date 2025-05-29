@@ -4,6 +4,8 @@ import json
 import ssl
 from urllib.request import urlopen
 
+MUNCIE_WEATHER_URL = "https://api.weather.gov/points/40.1934,-85.3864"
+
 # to connect to endpoints
 def connectEndpoint(url):
     # connect to url
@@ -18,13 +20,16 @@ def connectEndpoint(url):
 def main():
     try:
         # connect to first end point
-        weatherURL = connectEndpoint("https://api.weather.gov/points/40.1934,-85.3864")
+        cityWeatherURL= connectEndpoint(MUNCIE_WEATHER_URL)
 
-        # connect to second end point
-        forecastURL = weatherURL["properties"]["forecast"]
+        # grab forecast URL
+        forecastURL = cityWeatherURL["properties"]["forecast"]
+        #print(forecastURL)
+
+        # connect to forecast URL
         forecastData = connectEndpoint(forecastURL)
 
-        # print out 7 day forecast
+        # print out 7 day forecast 
         degrees = chr(176) # get degree sign
         print("Upcoming 7 day forecast in Muncie, Indiana:")
         for event in forecastData["properties"]["periods"]:
@@ -33,7 +38,8 @@ def main():
             temperature = event["temperature"]
             detailedForecast = event["detailedForecast"]
             print("-------------------------------")
-            print(f"{date[0]}: {name}\nTemperature: {temperature}{degrees}F\nDetailed Forecast: {detailedForecast}")
+            print(f"{date[0]}: {name}\nTemperature: {temperature}{degrees}F\n\
+                  Detailed Forecast: {detailedForecast}")
     except:
         print("Failed to connect")
 main()

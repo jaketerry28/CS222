@@ -13,18 +13,21 @@ class Test_Calculator(unittest.TestCase):
         self.assertEqual(self.calc.add(0,0), 0)
         self.assertEqual(self.calc.add(0.5,-1), -0.5)
         self.assertEqual(self.calc.add(-2,-1), -3)
+        self.assertEqual(self.calc.add(5000, 5000), 10000)
 
     def test_subtract(self):
         self.assertEqual(self.calc.subtract(1,1), 0)
         self.assertEqual(self.calc.subtract(0,0), 0)
         self.assertEqual(self.calc.subtract(0.5,-1), 1.5)
         self.assertEqual(self.calc.subtract(-2,-1), -1)
+        self.assertEqual(self.calc.subtract(400, 230), 170)
 
     def test_multiply(self):
         self.assertEqual(self.calc.multiply(1,1), 1)
         self.assertEqual(self.calc.multiply(0,0), 0)
         self.assertEqual(self.calc.multiply(0.5,-1), -0.5)
         self.assertEqual(self.calc.multiply(-2,-1), 2)
+        self.assertEqual(self.calc.multiply(45, 100), 4500)
 
     def test_divide(self):
         with self.assertRaises(ZeroDivisionError):
